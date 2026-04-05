@@ -1,10 +1,20 @@
 import { Metadata } from "next";
-import { BookOpen, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Calendar, Clock, Mail } from "lucide-react";
 
 import { constructMetadata } from "@/lib/seo";
+import { getAllPosts } from "@/lib/blog";
 import { Section } from "@/components/layout/section";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -16,6 +26,8 @@ export const metadata: Metadata = constructMetadata({
 });
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <>
       <Section className="pt-8 md:pt-12 pb-0">
@@ -29,38 +41,65 @@ export default function BlogPage() {
         description="Expert articles on GST, Income Tax, accounting best practices, and financial planning for individuals and businesses in India."
         centered
       >
-        {/* Coming soon */}
-        <div className="mx-auto max-w-lg text-center">
-          <Card className="border-dashed">
-            <CardContent className="flex flex-col items-center gap-4 py-12">
-              <div className="flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <BookOpen className="size-8" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground">
-                Coming Soon
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
-                We are working on insightful articles about tax planning, GST
-                compliance, and financial tips tailored for Indian taxpayers.
-                Stay tuned.
-              </p>
-            </CardContent>
-          </Card>
+        {/* Blog posts grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group block"
+            >
+              <Card className="h-full transition-shadow hover:shadow-md">
+                <CardHeader>
+                  <div className="mb-2">
+                    <Badge variant="secondary">{post.category}</Badge>
+                  </div>
+                  <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors">
+                    {post.title}
+                  </CardTitle>
+                  <CardDescription className="line-clamp-2">
+                    {post.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1" />
+                <CardFooter className="flex items-center justify-between text-xs text-muted-foreground">
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="size-3" />
+                      {new Date(post.date).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="size-3" />
+                      {post.readingTime}
+                    </span>
+                  </div>
+                  <span className="flex items-center gap-1 font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                    Read More
+                    <ArrowRight className="size-3" />
+                  </span>
+                </CardFooter>
+              </Card>
+            </Link>
+          ))}
         </div>
 
         {/* Newsletter signup */}
-        <div className="mx-auto mt-12 max-w-md text-center">
+        <div className="mx-auto mt-16 max-w-md text-center">
+          <div className="flex size-12 mx-auto items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+            <Mail className="size-6" />
+          </div>
           <h3 className="text-lg font-semibold text-foreground">
-            Get Notified When We Launch
+            Stay Updated
           </h3>
           <p className="mt-2 text-sm text-muted-foreground">
             Subscribe to receive the latest articles and tax tips directly in
             your inbox.
           </p>
-          <form
-            className="mt-4 flex gap-2"
-            action="#"
-          >
+          <form className="mt-4 flex gap-2" action="#">
             <Input
               type="email"
               placeholder="you@example.com"

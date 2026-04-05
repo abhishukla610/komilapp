@@ -49,6 +49,7 @@ export const navLinks: NavItem[] = [
     ],
   },
   { title: "Blog", href: "/blog" },
+  { title: "Bulletin", href: "/bulletin" },
   { title: "FAQ", href: "/faq" },
   { title: "Contact", href: "/contact" },
 ];

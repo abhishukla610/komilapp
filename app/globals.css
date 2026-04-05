@@ -135,3 +135,150 @@
     @apply scroll-smooth font-sans;
   }
 }
+
+/* Bulletin ticker animation */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Blog prose styles */
+.blog-prose {
+  line-height: 1.75;
+  color: var(--foreground);
+}
+
+.blog-prose h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
+.blog-prose h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.blog-prose p {
+  margin-bottom: 1.25rem;
+}
+
+.blog-prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-prose a:hover {
+  opacity: 0.8;
+}
+
+.blog-prose strong {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.blog-prose ul,
+.blog-prose ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.blog-prose ul {
+  list-style-type: disc;
+}
+
+.blog-prose ol {
+  list-style-type: decimal;
+}
+
+.blog-prose li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-prose li > ul,
+.blog-prose li > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.blog-prose blockquote {
+  border-left: 4px solid var(--border);
+  padding-left: 1rem;
+  margin-bottom: 1.25rem;
+  font-style: italic;
+  color: var(--muted-foreground);
+}
+
+.blog-prose hr {
+  border-color: var(--border);
+  margin: 2rem 0;
+}
+
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.blog-prose thead {
+  border-bottom: 2px solid var(--border);
+}
+
+.blog-prose th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  color: var(--foreground);
+}
+
+.blog-prose td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.blog-prose code {
+  font-size: 0.875em;
+  background: var(--muted);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+}
+
+.blog-prose pre {
+  background: var(--muted);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+}
+
+.blog-prose pre code {
+  background: transparent;
+  padding: 0;
+}
