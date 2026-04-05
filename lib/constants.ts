@@ -46,6 +46,7 @@ export const navLinks: NavItem[] = [
     children: [
       { title: "GST Calculator", href: "/tools/gst-calculator" },
       { title: "Income Tax Calculator", href: "/tools/income-tax-calculator" },
+      { title: "GST 2B Reconciliation", href: "/tools/gst-reconciliation" },
     ],
   },
   { title: "Blog", href: "/blog" },

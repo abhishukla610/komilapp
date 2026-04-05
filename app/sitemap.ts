@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/tools", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/tools/gst-calculator", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/tools/income-tax-calculator", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/tools/gst-reconciliation", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/faq", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/contact", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/pricing", priority: 0.7, changeFrequency: "weekly" as const },

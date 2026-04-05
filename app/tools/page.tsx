@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Calculator, Receipt, ArrowRight } from "lucide-react";
+import { Calculator, Receipt, ArrowRight, FileSearch } from "lucide-react";
 
 import { constructMetadata } from "@/lib/seo";
 import { Section } from "@/components/layout/section";
@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = constructMetadata({
   title: "Free Financial Tools & Calculators",
@@ -36,6 +37,14 @@ const tools = [
     href: "/tools/income-tax-calculator",
     icon: Calculator,
   },
+  {
+    title: "GST 2B Reconciliation",
+    description:
+      "Match your Tally purchase data with GSTR-2B portal data. Find mismatches, missing invoices, and ITC at risk.",
+    href: "/tools/gst-reconciliation",
+    icon: FileSearch,
+    badge: "Pro Tool",
+  },
 ];
 
 export default function ToolsPage() {
@@ -52,19 +61,26 @@ export default function ToolsPage() {
         description="Simplify your tax and financial calculations with our free online tools. Built for Indian businesses and individuals, these calculators help you get accurate results instantly."
         centered
       >
-        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {tools.map((tool) => (
             <Card key={tool.href} className="group relative transition-shadow hover:shadow-lg">
               <CardHeader>
-                <div className="mb-2 flex size-10 items-center justify-center rounded-lg bg-[var(--color-accent-gold)]/10">
-                  <tool.icon className="size-5 text-[var(--color-accent-gold)]" />
+                <div className="mb-2 flex items-center gap-2">
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-[var(--color-accent-gold)]/10">
+                    <tool.icon className="size-5 text-[var(--color-accent-gold)]" />
+                  </div>
+                  {"badge" in tool && tool.badge && (
+                    <Badge className="bg-[var(--color-accent-gold)]/10 text-[var(--color-accent-gold)] text-[10px]">
+                      {tool.badge}
+                    </Badge>
+                  )}
                 </div>
                 <CardTitle className="text-lg">{tool.title}</CardTitle>
                 <CardDescription>{tool.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button variant="outline" render={<Link href={tool.href} />}>
-                  Open Calculator
+                  Open Tool
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
               </CardContent>
